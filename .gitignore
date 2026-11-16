@@ -1,0 +1,18 @@
+# Secrets
+.env
+*.key
+# Données (versionnées via DVC à partir de J3, jamais dans Git)
+data/external/*
+data/raw/*
+data/clean/*
+!data/external/instacart/
+!data/**/.gitkeep
+logs/*
+!logs/.gitkeep
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
