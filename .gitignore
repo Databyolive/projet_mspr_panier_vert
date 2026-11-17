@@ -1,12 +1,13 @@
 # Secrets
 .env
 *.key
-# Données (versionnées via DVC à partir de J3, jamais dans Git)
-data/external/*
+# Données volumineuses : jamais dans Git
+data/external/instacart/*
+!data/external/instacart/.gitkeep
 data/raw/*
+!data/raw/.gitkeep
 data/clean/*
-!data/external/instacart/
-!data/**/.gitkeep
+!data/clean/.gitkeep
 logs/*
 !logs/.gitkeep
 # Python

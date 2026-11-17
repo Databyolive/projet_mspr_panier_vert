@@ -1,0 +1,36 @@
+# Configuration des 4 sources. Modifier ici, pas dans le code.
+instacart:
+  input_dir: data/external/instacart   # CSV fournis par l'encadrant (source Kaggle)
+
+openfoodfacts:
+  base_url: https://world.openfoodfacts.org/api/v2/search
+  country_tag: france
+  page_size: 100
+  max_pages: 10          # 20 x 100 = 2 000 produits (v1) ; au-delà, préférer l'export officiel
+  min_interval_s: 10     # limite documentée : 10 requêtes/min sur la recherche ; marge pour les retries
+
+rappelconso:
+  base_url: https://data.economie.gouv.fr/api/explore/v2.1
+  dataset: rappelconso-v2-gtin-trie   # V1 dépréciée -> utiliser la V2
+  id_field: id
+  date_field: date_publication
+  min_interval_s: 1.0
+
+scraping:
+  # Source 4 : ecologie.gouv.fr (alimentation et agriculture durables), contenus sous Licence
+  # Ouverte Etalab 2.0 sauf mention de tiers. A re-verifier : robots.txt + mentions legales
+  # (voir docs/conformite.md). Selecteurs a ajuster avec l'inspecteur du navigateur.
+  # /presse/ volontairement exclu : les communiques contiennent des contacts nominatifs.
+  listing_urls:
+    - https://www.ecologie.gouv.fr/politiques-publiques/alimentation-agriculture-durables
+  allowed_path_prefixes:       # ne suivre que les pages de contenu, pas la navigation
+    - /politiques-publiques/
+    - /dossiers/
+  link_selector: "main a[href]"
+  content_selector: "main p"
+  licence: Licence Ouverte Etalab 2.0
+  attribution: "Source : ministères Écologie Énergie Territoires (ecologie.gouv.fr)"
+  min_text_chars: 500          # ecarte les pages-themes (simples listes de liens)
+  keywords: [alimentation, alimentaire, agricultur, biologique, consomm, gaspillage, nutrition, label]
+  max_articles_per_listing: 30
+  min_interval_s: 3.0

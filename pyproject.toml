@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "panier-vert"
+version = "0.1.0"
+description = "MSPR 5.1 - Panier Vert : collecte, fouille de données et industrialisation"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0",
+    "pyarrow>=14.0",
+    "requests>=2.31",
+    "tenacity>=8.2",
+    "beautifulsoup4>=4.12",
+    "pyyaml>=6.0",
+    "protego>=0.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
